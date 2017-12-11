@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Categories;
+use app\models\Post;
+use app\models\PostSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -53,7 +56,46 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $slider_posts = Post::find()
+            ->orderBy(['rand()' => SORT_DESC])
+            ->limit(5)
+            ->all();
+
+        $last_three_categories = Categories::find()
+            ->orderBy(['created_at' => SORT_DESC])
+            ->limit(3)
+            ->all();
+
+        $last_five_posts = Post::find()
+            ->orderBy(['created_at' => SORT_DESC])
+            ->limit(5)
+            ->all();
+
+        $searchModel = new PostSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'slider_posts' => $slider_posts,
+            'last_categories' => $last_three_categories,
+            'last_posts' => $last_five_posts,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+
+    public function actionSingle($post_id)
+    {
+        $post = Post::findOne(['id' => $post_id]);
+
+        $last_five_posts = Post::find()
+            ->orderBy(['created_at' => SORT_DESC])
+            ->limit(5)
+            ->all();
+
+        return $this->render('single', [
+            'post' => $post,
+            'last_posts' => $last_five_posts
+        ]);
     }
 
 

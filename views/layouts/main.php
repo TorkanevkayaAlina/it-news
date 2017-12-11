@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\assets\AppAsset;
 use app\models\Categories;
+use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
 
@@ -56,11 +57,11 @@ $categories = Categories::find()->orderBy(['created_at' => SORT_DESC])->all();
                     </div>
                     <!-- Search Form -->
                     <div class="search-hidden-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
+                        <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true ], 'method' => 'get', 'action' => ['/site/index']]); ?>
+                            <input type="search" name="PostSearch[search]" id="search-anything" placeholder="Поиск новостей...">
                             <input type="submit" value="" class="d-none">
                             <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
-                        </form>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             </div>
@@ -76,7 +77,7 @@ $categories = Categories::find()->orderBy(['created_at' => SORT_DESC])->all();
             <!-- Logo Area Start -->
             <div class="col-12">
                 <div class="logo_area text-center">
-                    <a href="<?= Url::to(['/site/index']) ?>" class="yummy-logo">Yummy Blog</a>
+                    <a href="<?= Url::to(['/site/index']) ?>" class="yummy-logo">IT News</a>
                 </div>
             </div>
         </div>
@@ -96,7 +97,7 @@ $categories = Categories::find()->orderBy(['created_at' => SORT_DESC])->all();
                                 <?php if($categories): ?>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
                                         <?php foreach($categories as $category): ?>
-                                            <a class="dropdown-item" href="#"><?= $category->title ?></a>
+                                            <a class="dropdown-item" href="<?= Url::to(['/site/index', 'PostSearch[category]' => $category->id]) ?>"><?= $category->title ?></a>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php else: ?>
