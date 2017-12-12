@@ -584,6 +584,7 @@ li {
 
 .single_catagory img {
     border-radius: 20px;
+    height: 240px;
 }
 
 .catagory-title {
@@ -1486,4 +1487,10 @@ li {
 	z-index: 99999;
 	color: #fff;
 	cursor: pointer;
+}
+
+.main-carousel {
+    max-width: 100%;
+    height: 170px;
+    margin: 0 10px;
 }

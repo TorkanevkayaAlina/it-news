@@ -14,11 +14,11 @@ $this->title = 'Просмотр новости';
                     <!-- Single Post Share Info -->
                     <div class="col-2 col-sm-1">
                         <div class="single-post-share-info mt-100">
-                            <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" class="googleplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                            <a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#" class="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            <?= $post->f_status == 1 ? '<a href="'.$post->facebook.'" class="facebook" target=_blank><i class="fa fa-facebook" aria-hidden="true"></i></a>' : '' ?>
+                            <?= $post->t_status == 1 ? '<a href="'.$post->twitter.'" class="twitter" target=_blank><i class="fa fa-twitter" aria-hidden="true"></i></a>' : '' ?>
+                            <?= $post->g_status == 1 ? '<a href="'.$post->google.'" class="googleplus" target=_blank><i class="fa fa-google-plus" aria-hidden="true"></i></a>' : '' ?>
+                            <?= $post->i_status == 1 ? '<a href="'.$post->instagram.'" class="instagram" target=_blank><i class="fa fa-instagram" aria-hidden="true"></i></a>' : '' ?>
+                            <?= $post->p_status == 1 ? '<a href="'.$post->pinterest.'" class="pinterest" target=_blank><i class="fa fa-pinterest" aria-hidden="true"></i></a>' : '' ?>
                         </div>
                     </div>
 
@@ -57,11 +57,13 @@ $this->title = 'Просмотр новости';
                         </div>
 
                         <!-- Tags Area -->
-                        <div class="tags-area">
-                            <a href="#">Multipurpose</a>
-                            <a href="#">Design</a>
-                            <a href="#">Ideas</a>
-                        </div>
+                        <?php if(isset($tags)): ?>
+                            <div class="tags-area">
+                                <?php foreach($tags as $tag): ?>
+                                    <a href="#"><?= $tag->tag->name ?></a>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
 
                         <!-- Comment Area Start -->
                         <div class="comment_area section_padding_50 clearfix">

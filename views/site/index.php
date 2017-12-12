@@ -16,7 +16,7 @@ $this->title = 'Вайти_вайти';
         <!-- Single Slide -->
             <div class="welcome-single-slide">
                 <!-- Post Thumb -->
-                <img src="<?= isset($item->image) ? '/web/'.$item->image : '' ?>" alt="slider_image">
+                <img class="main-carousel" src="<?= isset($item->image) ? '/web/'.$item->image : '' ?>" alt="slider_image">
                 <!-- Overlay Text -->
                 <div class="project_title">
                     <div class="post-date-commnents d-flex">

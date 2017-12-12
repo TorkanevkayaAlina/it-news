@@ -35,12 +35,15 @@ class PostSearch extends Post
             return $dataProvider;
         }
 
-        $query->JoinWith(['user', 'category']);
+        $query->JoinWith(['user', 'category', 'tags']);
 
-        $query->andFilterWhere(['like', 'post.title', $this->search])
-            ->orFilterWhere(['like', 'short_description', $this->search])
-            ->orFilterWhere(['like', 'description', $this->search])
-            ->orWhere(['category_id' => $this->category]);
+        if(!empty($this->search) || !empty($this->category)){
+            $query->andFilterWhere(['like', 'post.title', $this->search])
+                ->orFilterWhere(['like', 'short_description', $this->search])
+                ->orFilterWhere(['like', 'description', $this->search])
+                ->orFilterWhere(['like', 'tag.name', $this->search])
+                ->orWhere(['category_id' => $this->category]);
+        }
 
         return $dataProvider;
     }

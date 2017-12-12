@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Categories;
 use app\models\Post;
 use app\models\PostSearch;
+use app\models\PostToTag;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -87,6 +88,10 @@ class SiteController extends Controller
     {
         $post = Post::findOne(['id' => $post_id]);
 
+        $tags = PostToTag::find()
+            ->where(['post_id' => $post->id])
+            ->all();
+
         $last_five_posts = Post::find()
             ->orderBy(['created_at' => SORT_DESC])
             ->limit(5)
@@ -94,6 +99,7 @@ class SiteController extends Controller
 
         return $this->render('single', [
             'post' => $post,
+            'tags' => $tags,
             'last_posts' => $last_five_posts
         ]);
     }

@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\UploadedFile;
+use yii\helpers\ArrayHelper;
 
 class PostController extends Controller
 {
@@ -71,6 +72,9 @@ class PostController extends Controller
 
                 return $this->redirect('create');
             }
+        } elseif(!\Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->get());
+            $model->tag_ids = ArrayHelper::map($model->tags, 'name', 'name');
         }
         
         return $this->render('create', [
@@ -84,6 +88,12 @@ class PostController extends Controller
         $model = Post::findOne(['id' => $id, 'user_id' => $user_id]);
 
         if($model){
+
+            if(!\Yii::$app->request->isPost) {
+                $model->load(Yii::$app->request->get());
+                $model->tag_ids = ArrayHelper::map($model->tags, 'name', 'name');
+            }
+
             if($model->load(Yii::$app->request->post()) && $model->save()){
                 $imageName = uniqid();
                 $model->post_image = UploadedFile::getInstance($model, 'post_image');
