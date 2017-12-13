@@ -2,13 +2,13 @@
 
 namespace app\controllers;
 
-use app\models\Post;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
+use app\models\Post;
 
 class PostController extends Controller
 {

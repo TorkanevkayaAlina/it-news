@@ -12,6 +12,11 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'comment' => [
+            'class' => 'isaurssaurav\yii\comment\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'cookieValidationKey' => 'fywVj-ilR19EgFc2GzSFlLtWDYUga8BP',

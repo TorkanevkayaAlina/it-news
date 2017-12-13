@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c87ea9cd4d5134f2b88cb66571e1f6db",
+    "content-hash": "0d8c46d129466b7cea2fb18cc1452fdd",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -263,6 +263,48 @@
             "time": "2017-06-03T02:28:16+00:00"
         },
         {
+            "name": "isaurssaurav/yii2-comment",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/isaurssaurav/yii2-comment.git",
+                "reference": "20ba19ef17ca966789b1bfcddb4fb9aa1b254794"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/isaurssaurav/yii2-comment/zipball/20ba19ef17ca966789b1bfcddb4fb9aa1b254794",
+                "reference": "20ba19ef17ca966789b1bfcddb4fb9aa1b254794",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": ">=2.0.10"
+            },
+            "type": "extension",
+            "autoload": {
+                "psr-4": {
+                    "isaurssaurav\\yii\\comment\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "saurs saurav",
+                    "email": "saurssaurav33@gmail.com"
+                }
+            ],
+            "description": "light Yii2-comment widget",
+            "keywords": [
+                "advanced-comment",
+                "comment",
+                "yii2-comment"
+            ],
+            "time": "2017-01-17T12:49:31+00:00"
+        },
+        {
             "name": "kartik-v/yii2-krajee-base",
             "version": "v1.8.9",
             "source": {
@@ -364,7 +406,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-12-03T08:02:21+00:00"
+            "time": "2017-12-03 08:02:21"
         },
         {
             "name": "powerkernel/yii2-tinymce",

@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use isaurssaurav\yii\comment\widgets\CommentWidget;
 
 $this->title = 'Просмотр новости';
 ?>
@@ -45,7 +46,7 @@ $this->title = 'Просмотр новости';
                                     <!-- Post Comment & Share Area -->
                                     <div class="post-comment-share-area d-flex">
                                         <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> <?= isset($comment_count) ? $comment_count : 0 ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -65,88 +66,9 @@ $this->title = 'Просмотр новости';
                             </div>
                         <?php endif; ?>
 
-                        <!-- Comment Area Start -->
-                        <div class="comment_area section_padding_50 clearfix">
-                            <h4 class="mb-30">2 Comments</h4>
-
-                            <ol>
-                                <!-- Single Comment Area -->
-                                <li class="single_comment_area">
-                                    <div class="comment-wrapper d-flex">
-                                        <!-- Comment Meta -->
-                                        <div class="comment-author">
-                                            <img src="img/blog-img/17.jpg" alt="">
-                                        </div>
-                                        <!-- Comment Content -->
-                                        <div class="comment-content">
-                                            <span class="comment-date text-muted">27 Aug 2018</span>
-                                            <h5>Brandon Kelley</h5>
-                                            <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                            <a href="#">Like</a>
-                                            <a class="active" href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                    <ol class="children">
-                                        <li class="single_comment_area">
-                                            <div class="comment-wrapper d-flex">
-                                                <!-- Comment Meta -->
-                                                <div class="comment-author">
-                                                    <img src="img/blog-img/18.jpg" alt="">
-                                                </div>
-                                                <!-- Comment Content -->
-                                                <div class="comment-content">
-                                                    <span class="comment-date text-muted">27 Aug 2018</span>
-                                                    <h5>Brandon Kelley</h5>
-                                                    <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                                    <a href="#">Like</a>
-                                                    <a class="active" href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                </li>
-                                <li class="single_comment_area">
-                                    <div class="comment-wrapper d-flex">
-                                        <!-- Comment Meta -->
-                                        <div class="comment-author">
-                                            <img src="img/blog-img/19.jpg" alt="">
-                                        </div>
-                                        <!-- Comment Content -->
-                                        <div class="comment-content">
-                                            <span class="comment-date text-muted">27 Aug 2018</span>
-                                            <h5>Brandon Kelley</h5>
-                                            <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                            <a href="#">Like</a>
-                                            <a class="active" href="#">Reply</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-
-                        <!-- Leave A Comment -->
-                        <div class="leave-comment-area section_padding_50 clearfix">
-                            <div class="comment-form">
-                                <h4 class="mb-30">Leave A Comment</h4>
-
-                                <!-- Comment Form -->
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="contact-name" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="contact-email" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="contact-website" placeholder="Website">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn contact-btn">Post Comment</button>
-                                </form>
-                            </div>
-                        </div>
+                        <?= CommentWidget::widget([
+                            'post_id' => $_GET['post_id']
+                        ]); ?>
 
                     </div>
                 </div>
@@ -159,7 +81,7 @@ $this->title = 'Просмотр новости';
                     <!-- Single Widget Area -->
                     <div class="single-widget-area subscribe_widget text-center">
                         <div class="widget-title">
-                            <h6>Subscribe &amp; Follow</h6>
+                            <h6>Подписаться</h6>
                         </div>
                         <div class="subscribe-link">
                             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>

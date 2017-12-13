@@ -1,5 +1,11 @@
 <?php
 use yii\helpers\Url;
+use app\models\Comment;
+
+$comment_count = Comment::find()
+    ->where(['post_id' => $model->id, 'parent_id' => 0])
+    ->count();
+
 ?>
 
 <!-- Single Post -->
@@ -26,7 +32,7 @@ use yii\helpers\Url;
                 <div class="post-comment-share-area d-flex">
                     <!-- Post Comments -->
                     <div class="post-comments">
-                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> <?= isset($comment_count) ? $comment_count : 0 ?></a>
                     </div>
                 </div>
             </div>

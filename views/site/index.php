@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
+use app\models\Comment;
 
 $this->title = 'Вайти_вайти';
 ?>
@@ -14,6 +15,10 @@ $this->title = 'Вайти_вайти';
 
         <?php foreach($slider_posts as $item): ?>
         <!-- Single Slide -->
+            <?php $comment_count = Comment::find()
+                ->where(['post_id' => $item->id, 'parent_id' => 0])
+                ->count();
+            ?>
             <div class="welcome-single-slide">
                 <!-- Post Thumb -->
                 <img class="main-carousel" src="<?= isset($item->image) ? '/web/'.$item->image : '' ?>" alt="slider_image">
@@ -21,7 +26,7 @@ $this->title = 'Вайти_вайти';
                 <div class="project_title">
                     <div class="post-date-commnents d-flex">
                         <a href="<?= Url::to(['/site/single', 'post_id' => $item->id]) ?>"><?= date('F d, Y', strtotime($item->created_at)) ?>May 19, 2017</a>
-                        <a href="<?= Url::to(['/site/single', 'post_id' => $item->id]) ?>">5 Comment</a>
+                        <a href="<?= Url::to(['/site/single', 'post_id' => $item->id]) ?>"><?= isset($comment_count) ? $comment_count : 0 ?> Комментариев</a>
                     </div>
                     <a href="<?= Url::to(['/site/single', 'post_id' => $item->id]) ?>">
                         <h5><?= $item->title ?></h5>
@@ -66,17 +71,17 @@ $this->title = 'Вайти_вайти';
                     <!-- ******* List Blog Area Start ******* -->
 
                     <?php Pjax::begin(['id' => 'a_list']); ?>
-                    <?= ListView::widget([
-                        'dataProvider' => $dataProvider,
-                        'summary' => '',
-                        'itemView' => '_post',
-                        'options' => [
-                            'tag' => false,
-                        ],
-                        'itemOptions' => [
-                            'tag' => false
-                        ]
-                    ]); ?>
+                        <?= ListView::widget([
+                            'dataProvider' => $dataProvider,
+                            'summary' => '',
+                            'itemView' => '_post',
+                            'options' => [
+                                'tag' => false,
+                            ],
+                            'itemOptions' => [
+                                'tag' => false
+                            ]
+                        ]); ?>
                     <?php Pjax::end() ?>
 
 

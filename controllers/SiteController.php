@@ -2,10 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Categories;
-use app\models\Post;
-use app\models\PostSearch;
-use app\models\PostToTag;
+use app\models\Comment;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -13,6 +10,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Categories;
+use app\models\Post;
+use app\models\PostSearch;
+use app\models\PostToTag;
 
 class SiteController extends Controller
 {
@@ -96,11 +97,16 @@ class SiteController extends Controller
             ->orderBy(['created_at' => SORT_DESC])
             ->limit(5)
             ->all();
+        
+        $comment_count = Comment::find()
+            ->where(['post_id' => $post_id, 'parent_id' => 0])
+            ->count();
 
         return $this->render('single', [
             'post' => $post,
             'tags' => $tags,
-            'last_posts' => $last_five_posts
+            'last_posts' => $last_five_posts,
+            'comment_count' => $comment_count
         ]);
     }
 
